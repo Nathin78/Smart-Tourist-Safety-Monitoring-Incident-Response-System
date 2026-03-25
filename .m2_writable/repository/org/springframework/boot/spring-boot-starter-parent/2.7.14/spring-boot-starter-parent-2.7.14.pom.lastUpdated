@@ -1,0 +1,5 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Sun Mar 15 11:05:03 IST 2026
+@default-central-https\://repo.maven.apache.org/maven2/.lastUpdated=1773551861464
+https\://repo.maven.apache.org/maven2/.error=Could not transfer artifact org.springframework.boot\:spring-boot-starter-parent\:pom\:2.7.14 from/to central (https\://repo.maven.apache.org/maven2)\: Permission denied\: no further information
+file\:///C\:/Users/NarmathaNathin/.m2/repository/.lastUpdated=1773552903713

@@ -1,0 +1,64 @@
+# Backend Ignores
+backend/target/
+backend/.classpath
+backend/.project
+backend/.settings/
+backend/*.class
+backend/.DS_Store
+backend/.vscode/
+backend/.idea/
+backend/src/main/resources/application.properties
+# Frontend Ignores
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/build/
+frontend/build_tmp/
+frontend/.npm-cache/
+frontend/dist/
+frontend/.env.local
+frontend/.env.*.local
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/.DS_Store
+frontend/.vscode/
+
+
+
+# IDE ignores
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Dependencies
+*.jar
+*.war
+
+# Database
+*.db
+*.sqlite
+*.sql.bak
+
+# Misc
+.cache/
+.m2/
+.npm-cache/
+.run/
+.tmp/
+temp/
