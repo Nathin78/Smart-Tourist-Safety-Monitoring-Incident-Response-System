@@ -2,17 +2,6 @@
 
 A complete full-stack application for monitoring tourist safety, detecting risky areas, and handling emergency responses.
 
-## Table of Contents
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Installation & Setup](#installation--setup)
-- [Database Setup](#database-setup)
-- [Running the Application](#running-the-application)
-- [API Documentation](#api-documentation)
-- [Frontend Features](#frontend-features)
-- [Sample Data](#sample-data)
-
 ## Features
 
 ### 1. Tourist Management
