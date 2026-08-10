@@ -1,548 +1,558 @@
-﻿# Smart Tourist Safety Monitoring & Incident Response System
+# 🛡️ Smart Tourist Safety Monitoring & Incident Response System
 
-A complete full-stack application for monitoring tourist safety, detecting risky areas, and handling emergency responses.
+An intelligent **tourist safety and incident response platform** designed to improve traveler safety using **AI, geofencing, real-time monitoring, and automated incident management**.
 
-## Features
-
-### 1. Tourist Management
-- User registration with Passport, country, and contact details
-- Secure JWT-based authentication
-- User profile management
-
-### 2. Location Tracking
-- Real-time GPS tracking of tourist locations
-- Location history storage
-- Geofencing capabilities
-
-### 3. Safety Monitoring
-- Predefined safety zones (Safe, Danger, Restricted)
-- Automatic alerts when entering danger zones
-- Real-time location updates
-
-### 4. Incident Reporting
-- Report incidents (theft, harassment, lost documents, medical emergency)
-- Location-based incident logging
-- Incident status tracking (Open/Resolved)
-
-### 5. Emergency Response
-- SOS button for immediate alerts
-- Emergency location sharing
-- Admin dashboard for monitoring
-
-### 6. Admin Panel
-- Monitor all registered tourists
-- View incident reports
-- Track SOS alerts
-- Manage safety zones
-
-## Tech Stack
-
-### Frontend
-- **React.js** - UI Framework
-- **Tailwind CSS** - Styling
-- **React Router** - Navigation
-- **Axios** - HTTP Client
-- **React Hot Toast** - Notifications
-- **Google Maps API** - Map visualization
-
-### Backend
-- **Spring Boot 2.7.14** - Java Framework
-- **Spring Data JPA** - ORM
-- **Spring Security** - Authentication
-- **JWT** - Token Management
-- **MySQL 8** - Database
-
-### Database
-- **MySQL 8** - Relational Database
-
-## Project Structure
-
-```
-Smart Tourist Safety Monitoring/
-â”œâ”€â”€ backend/
-â”‚   â”œâ”€â”€ src/main/java/com/touristsafety/
-â”‚   â”‚   â”œâ”€â”€ config/
-â”‚   â”‚   â”‚   â””â”€â”€ SecurityConfig.java
-â”‚   â”‚   â”œâ”€â”€ controller/
-â”‚   â”‚   â”‚   â”œâ”€â”€ AuthController.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristController.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ LocationController.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ IncidentController.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ GeoFenceController.java
-â”‚   â”‚   â”‚   â””â”€â”€ SOSAlertController.java
-â”‚   â”‚   â”œâ”€â”€ dto/
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristRegistrationDTO.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristLoginDTO.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ AuthResponseDTO.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ LocationUpdateDTO.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ IncidentReportDTO.java
-â”‚   â”‚   â”‚   â””â”€â”€ SOSAlertDTO.java
-â”‚   â”‚   â”œâ”€â”€ entity/
-â”‚   â”‚   â”‚   â”œâ”€â”€ Tourist.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ Location.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ Incident.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ GeoFence.java
-â”‚   â”‚   â”‚   â””â”€â”€ SOSAlert.java
-â”‚   â”‚   â”œâ”€â”€ exception/
-â”‚   â”‚   â”‚   â”œâ”€â”€ GlobalExceptionHandler.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ ResourceNotFoundException.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ DuplicateResourceException.java
-â”‚   â”‚   â”‚   â””â”€â”€ UnauthorizedException.java
-â”‚   â”‚   â”œâ”€â”€ repository/
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristRepository.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ LocationRepository.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ IncidentRepository.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ GeoFenceRepository.java
-â”‚   â”‚   â”‚   â””â”€â”€ SOSAlertRepository.java
-â”‚   â”‚   â”œâ”€â”€ service/
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristService.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ LocationService.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ IncidentService.java
-â”‚   â”‚   â”‚   â”œâ”€â”€ GeoFenceService.java
-â”‚   â”‚   â”‚   â””â”€â”€ SOSAlertService.java
-â”‚   â”‚   â”œâ”€â”€ util/
-â”‚   â”‚   â”‚   â”œâ”€â”€ JwtTokenProvider.java
-â”‚   â”‚   â”‚   â””â”€â”€ GeoFencingUtil.java
-â”‚   â”‚   â””â”€â”€ TouristSafetyApplication.java
-â”‚   â”œâ”€â”€ src/main/resources/
-â”‚   â”‚   â””â”€â”€ application.properties
-â”‚   â””â”€â”€ pom.xml
-â”œâ”€â”€ frontend/
-â”‚   â”œâ”€â”€ public/
-â”‚   â”‚   â””â”€â”€ index.html
-â”‚   â”œâ”€â”€ src/
-â”‚   â”‚   â”œâ”€â”€ components/
-â”‚   â”‚   â”‚   â”œâ”€â”€ Navbar.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ Sidebar.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ PrivateRoute.js
-â”‚   â”‚   â”‚   â””â”€â”€ AlertNotification.js
-â”‚   â”‚   â”œâ”€â”€ context/
-â”‚   â”‚   â”‚   â””â”€â”€ AuthContext.js
-â”‚   â”‚   â”œâ”€â”€ pages/
-â”‚   â”‚   â”‚   â”œâ”€â”€ LoginPage.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ RegisterPage.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ TouristDashboard.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ MapTrackingPage.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ IncidentReporting.js
-â”‚   â”‚   â”‚   â”œâ”€â”€ SOSEmergency.js
-â”‚   â”‚   â”‚   â””â”€â”€ AdminDashboard.js
-â”‚   â”‚   â”œâ”€â”€ services/
-â”‚   â”‚   â”‚   â””â”€â”€ api.js
-â”‚   â”‚   â”œâ”€â”€ App.js
-â”‚   â”‚   â”œâ”€â”€ index.js
-â”‚   â”‚   â””â”€â”€ index.css
-â”‚   â”œâ”€â”€ package.json
-â”‚   â”œâ”€â”€ tailwind.config.js
-â”‚   â””â”€â”€ postcss.config.js
-â”œâ”€â”€ database/
-â”‚   â””â”€â”€ schema.sql
-â””â”€â”€ README.md
-```
-
-## Installation & Setup
-
-### Prerequisites
-- Java 11 or higher
-- Node.js 14+ and npm
-- MySQL 8
-- Git
-
-### Backend Setup
-
-1. **Navigate to backend directory:**
-```bash
-cd backend
-```
-
-2. **Update database configuration** in `src/main/resources/application.properties`:
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/tourist_safety?useSSL=false&serverTimezone=UTC
-spring.datasource.username=root
-spring.datasource.password=your_password
-```
-
-3. **Build the project:**
-```bash
-mvn clean install
-```
-
-### Frontend Setup
-
-1. **Navigate to frontend directory:**
-```bash
-cd frontend
-```
-
-2. **Install dependencies:**
-```bash
-npm install
-```
-
-3. **Update API base URL** in `src/services/api.js` if needed:
-```javascript
-const API_BASE_URL = 'http://localhost:8081/api';
-```
-
-## Database Setup
-
-The backend reads DB settings from environment variables (recommended) or falls back to local defaults in `backend/src/main/resources/application.properties`.
-
-Example (PowerShell):
-```powershell
-$env:SPRING_DATASOURCE_PASSWORD="your_mysql_password"
-```
-
-### Option A: Docker (recommended)
-
-```bash
-docker compose up -d
-```
-
-This uses `docker-compose.yml` and initializes tables + sample data from `database/schema.sql`.
-
-### Option B: Local MySQL
-
-1. **Create database:**
-```bash
-mysql -u root -p
-```
-
-2. **Run schema.sql:**
-```sql
-source database/schema.sql
-```
-
-Or import the file using MySQL Workbench.
-
-## Running the Application
-
-### Start Backend Server
-
-```bash
-cd backend
-mvn spring-boot:run
-```
-
-The backend will start on `http://localhost:8081`
-
-### Start Frontend Development Server
-
-```bash
-cd frontend
-npm start
-```
-
-The frontend will start on `http://localhost:3000`
-
-## API Documentation
-
-### Authentication Endpoints
-
-#### Register User
-```
-POST /api/auth/register
-Content-Type: application/json
-
-{
-  "name": "John Doe",
-  "email": "john@example.com",
-  "password": "password123",
-  "phone": "+1234567890",
-  "country": "USA",
-  "passportNumber": "ABC123456"
-}
-```
-
-#### Login User
-```
-POST /api/auth/login
-Content-Type: application/json
-
-{
-  "email": "john@example.com",
-  "password": "password123"
-}
-
-Response:
-{
-  "id": 1,
-  "email": "john@example.com",
-  "name": "John Doe",
-  "token": "eyJhbGciOiJIUzUxMiJ9...",
-  "message": "Login successful"
-}
-```
-
-### Tourist Endpoints
-
-#### Get All Tourists
-```
-GET /api/tourists
-Authorization: Bearer <token>
-```
-
-#### Get Tourist by ID
-```
-GET /api/tourists/{id}
-Authorization: Bearer <token>
-```
-
-### Location Endpoints
-
-#### Update Location
-```
-POST /api/location/update
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "touristId": 1,
-  "latitude": 28.6139,
-  "longitude": 77.2090
-}
-```
-
-#### Get Location History
-```
-GET /api/location/history/{touristId}
-Authorization: Bearer <token>
-```
-
-#### Get Latest Location
-```
-GET /api/location/latest/{touristId}
-Authorization: Bearer <token>
-```
-
-### Incident Endpoints
-
-#### Report Incident
-```
-POST /api/incidents/report
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "touristId": 1,
-  "type": "theft",
-  "description": "Wallet stolen at market",
-  "latitude": 28.6139,
-  "longitude": 77.2090
-}
-```
-
-#### Get All Incidents
-```
-GET /api/incidents
-Authorization: Bearer <token>
-```
-
-#### Get Tourist's Incidents
-```
-GET /api/incidents/tourist/{touristId}
-Authorization: Bearer <token>
-```
-
-#### Get Open Incidents
-```
-GET /api/incidents/open
-Authorization: Bearer <token>
-```
-
-#### Resolve Incident
-```
-PUT /api/incidents/{id}/resolve
-Authorization: Bearer <token>
-```
-
-### GeoFence Endpoints
-
-#### Get All GeoFences
-```
-GET /api/geofences
-Authorization: Bearer <token>
-```
-
-#### Get Active GeoFences
-```
-GET /api/geofences/active
-Authorization: Bearer <token>
-```
-
-#### Get GeoFences by Type
-```
-GET /api/geofences/type/{zoneType}
-Authorization: Bearer <token>
-```
-
-#### Create GeoFence
-```
-POST /api/geofences
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "zoneName": "Market Area",
-  "latitude": 28.6139,
-  "longitude": 77.2090,
-  "radius": 500,
-  "zoneType": "DANGER_ZONE"
-}
-```
-
-### SOS Alert Endpoints
-
-#### Create SOS Alert
-```
-POST /api/sos
-Authorization: Bearer <token>
-Content-Type: application/json
-
-{
-  "touristId": 1,
-  "latitude": 28.6139,
-  "longitude": 77.2090
-}
-```
-
-#### Get All SOS Alerts
-```
-GET /api/sos
-Authorization: Bearer <token>
-```
-
-#### Get Active SOS Alerts
-```
-GET /api/sos/active
-Authorization: Bearer <token>
-```
-
-#### Resolve SOS Alert
-```
-PUT /api/sos/{id}/resolve?notes=Resolved
-Authorization: Bearer <token>
-```
-
-## Frontend Features
-
-### Pages
-
-#### Login Page
-- Email and password authentication
-- Link to registration page
-- Demo credentials display
-
-#### Registration Page
-- Full tourist registration form
-- Validation of input fields
-- Automatic login after registration
-
-#### Tourist Dashboard
-- Profile information display
-- Safety status overview
-- Recent incidents list
-- Real-time status updates
-
-#### Map Tracking Page
-- Live GPS position tracking
-- Display of safety zones
-- Color-coded zones (Green=Safe, Red=Danger, Yellow=Restricted)
-- Location update frequency
-
-#### Incident Reporting
-- Incident type selection
-- Detailed description input
-- Location input (with auto-fill option)
-- Real-time location retrieval
-
-#### SOS Emergency
-- Large SOS button
-- Automatic location capture
-- Countdown timer after activation
-- Emergency contact information
-
-#### Admin Dashboard
-- Tourist management view
-- Incident monitoring
-- SOS alert tracking
-- Safety zone management
-- Statistics overview
-
-## Sample Data
-
-### Demo Credentials
-```
-Email: admin@touristsafety.com
-Password: admin123
-```
-
-### Sample Locations
-```
-Taj Mahal - 27.1751, 78.0421 (SAFE_ZONE)
-Jama Masjid - 28.6505, 77.2308 (DANGER_ZONE)
-Central Park - 40.7829, -73.9654 (SAFE_ZONE)
-Times Square - 40.7580, -73.9855 (DANGER_ZONE)
-```
-
-### Sample Incident Types
-- theft
-- harassment
-- lost_documents
-- medical_emergency
-
-## Features Implemented
-
-âœ… User Authentication (JWT)
-âœ… Tourist Registration & Login
-âœ… Real-time Location Tracking
-âœ… Geofencing & Safety Zones
-âœ… Incident Reporting
-âœ… SOS Emergency System
-âœ… Admin Dashboard
-âœ… Responsive UI with Tailwind CSS
-âœ… Error Handling
-âœ… Database Integration
-âœ… API Security
-
-## Troubleshooting
-
-### Database Connection Error
-- Ensure MySQL is running
-- Check database credentials in application.properties
-- Verify database exists: `tourist_safety`
-
-### CORS Error
-- Backend CORS is configured for all origins
-- If issues persist, update SecurityConfig.java
-
-### Location Permission
-- Browser may request location access
-- Allow location services for best experience
-
-### Port Already in Use
-- Backend: Check `application.properties` for port
-- Frontend: Use `PORT=3001 npm start` for different port
-
-## Future Enhancements
-
-1. **Real-time Notifications** - WebSocket integration
-2. **Government Portal** - For police and rescue teams
-3. **Language Support** - Multi-language support
-4. **Mobile App** - React Native version
-5. **AI Integration** - Predictive danger zone identification
-6. **Video Call** - Emergency video communication
-7. **Offline Mode** - Offline incident logging
-8. **SMS Alerts** - SMS notifications for emergencies
-
-## License
-
-This project is created for educational purposes as part of Smart India Hackathon.
-
-## Support
-
-For issues and questions, please create an issue in the repository or contact the development team.
+The system helps monitor tourist locations, detect potential safety incidents, provide emergency assistance, and support authorities or administrators in responding quickly to critical situations.
 
 ---
 
-**Created with â¤ï¸ for Tourist Safety**
+## 🚀 Overview
 
+Tourist destinations can face challenges such as:
+
+* Getting lost in unfamiliar locations
+* Entering restricted or dangerous areas
+* Medical emergencies
+* Accidents
+* Missing tourists
+* Safety threats
+* Delayed emergency response
+
+The **Smart Tourist Safety Monitoring & Incident Response System** aims to address these problems through a centralized digital platform that combines **location monitoring, geofencing, incident reporting, AI-based analysis, and emergency response**.
+
+---
+
+## ✨ Key Features
+
+### 📍 Real-Time Tourist Location Monitoring
+
+* Monitor tourist locations.
+* Track location information.
+* Display tourist locations on a map.
+* Identify tourists entering predefined areas.
+* Support location-based safety monitoring.
+
+### 🗺️ Geofencing
+
+Create virtual geographic boundaries around important locations.
+
+The system can identify when a tourist:
+
+* Enters a restricted zone.
+* Leaves a safe zone.
+* Enters a high-risk area.
+* Approaches a dangerous location.
+
+Example:
+
+```text
+Tourist Location
+       │
+       ▼
+┌─────────────────────┐
+│    Safe Zone        │
+│                     │
+│      👤 Tourist     │
+│                     │
+└─────────────────────┘
+       │
+       │ Enter restricted area
+       ▼
+     ⚠️ Alert
+```
+
+### 🚨 Incident Reporting
+
+Tourists can report incidents such as:
+
+* Accidents
+* Medical emergencies
+* Theft
+* Harassment
+* Missing persons
+* Unsafe locations
+* Other emergency situations
+
+Each incident can contain relevant location and incident information.
+
+### 🤖 AI-Based Incident Analysis
+
+AI can assist in analyzing reported incidents and identifying:
+
+* Incident category
+* Severity
+* Priority
+* Potential risk
+* Recommended response
+
+Example:
+
+```text
+Incident
+   │
+   ▼
+AI Analysis
+   │
+   ├── Category
+   ├── Severity
+   ├── Priority
+   └── Recommended Action
+```
+
+### 🔔 Emergency Alerts
+
+The system can generate alerts when critical situations are detected.
+
+Possible alerts include:
+
+* 🚨 Emergency incident
+* ⚠️ Geofence violation
+* 🏥 Medical emergency
+* 📍 Tourist missing
+* 🔥 High-risk location
+* 🆘 SOS request
+
+### 🆘 SOS / Emergency Assistance
+
+Tourists can trigger an emergency request when immediate assistance is required.
+
+The system can provide:
+
+* Tourist location
+* Emergency type
+* Incident details
+* Alert status
+* Response information
+
+### 👮 Admin Monitoring Dashboard
+
+Administrators can monitor:
+
+* Active tourists
+* Tourist locations
+* Reported incidents
+* Emergency alerts
+* Geofenced areas
+* Incident status
+* Response activities
+
+### 📊 Safety Analytics
+
+The system can provide insights such as:
+
+* Number of incidents
+* Incident categories
+* High-risk locations
+* Emergency response statistics
+* Tourist activity
+* Incident trends
+
+---
+
+## 🧠 System Workflow
+
+```text
+                 👤 Tourist
+                     │
+                     ▼
+             ┌───────────────┐
+             │ Mobile/Web App│
+             └───────┬───────┘
+                     │
+          ┌──────────┼──────────┐
+          ▼          ▼          ▼
+      Location    SOS/Alert   Incident
+      Tracking    Request     Report
+          │          │          │
+          └──────────┼──────────┘
+                     ▼
+             ┌───────────────┐
+             │ Backend API   │
+             └───────┬───────┘
+                     │
+          ┌──────────┼───────────┐
+          ▼          ▼           ▼
+      Geofencing     AI       Database
+          │       Analysis        │
+          └──────────┼────────────┘
+                     ▼
+             ┌───────────────┐
+             │ Admin / Safety│
+             │   Dashboard   │
+             └───────┬───────┘
+                     │
+                     ▼
+              🚨 Response Team
+```
+
+---
+
+## 🏗️ System Architecture
+
+```text
+┌─────────────────────────────────────────┐
+│              User Layer                 │
+│                                         │
+│       Tourist Application               │
+│       Admin Dashboard                   │
+└──────────────────┬──────────────────────┘
+                   │
+                   ▼
+┌─────────────────────────────────────────┐
+│             Application Layer           │
+│                                         │
+│ Authentication                          │
+│ Tourist Management                      │
+│ Location Tracking                       │
+│ Incident Management                     │
+│ Emergency Management                    │
+│ Geofencing                              │
+└──────────────────┬──────────────────────┘
+                   │
+          ┌────────┼─────────┐
+          ▼        ▼         ▼
+      ┌───────┐ ┌───────┐ ┌─────────┐
+      │  AI   │ │ Maps  │ │Database │
+      │Engine │ │ / GPS │ │         │
+      └───────┘ └───────┘ └─────────┘
+```
+
+---
+
+## 🛠️ Technology Stack
+
+The project is designed around modern full-stack technologies.
+
+### Frontend
+
+* React.js
+* JavaScript
+* HTML5
+* CSS3
+* Responsive UI
+
+### Backend
+
+* Java
+* Spring Boot
+* REST APIs
+* Spring Data JPA
+
+### Database
+
+* MySQL
+
+### Security
+
+* JWT Authentication
+* BCrypt Password Hashing
+
+### Intelligent Features
+
+* AI-based incident analysis
+* Risk classification
+* Location-based alerts
+
+### Location Services
+
+* GPS
+* Geolocation
+* Geofencing
+* Map integration
+
+---
+
+## 📂 Project Structure
+
+```text
+Smart-Tourist-Safety-Monitoring-Incident-Response-System/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── assets/
+│   │
+│   └── package.json
+│
+├── backend/
+│   ├── src/
+│   │   ├── controller/
+│   │   ├── service/
+│   │   ├── repository/
+│   │   ├── model/
+│   │   └── security/
+│   │
+│   └── pom.xml
+│
+├── README.md
+└── ...
+```
+
+---
+
+## 🔐 Authentication
+
+The system can use JWT-based authentication to protect user and administrative resources.
+
+```text
+Register
+   │
+   ▼
+Login
+   │
+   ▼
+JWT Token
+   │
+   ▼
+Authenticated Request
+   │
+   ▼
+Protected API
+```
+
+Different user roles can be supported, such as:
+
+* Tourist
+* Administrator
+* Safety Officer
+* Emergency Response Team
+
+---
+
+## 📍 Geofencing Workflow
+
+```text
+GPS Location
+     │
+     ▼
+Get Latitude & Longitude
+     │
+     ▼
+Compare with Geofence
+     │
+     ├───────────────┐
+     │               │
+  Inside          Outside
+     │               │
+     ▼               ▼
+ Continue        Check Alert
+ Monitoring          │
+                     ▼
+                Send Warning
+```
+
+---
+
+## 🚨 Incident Lifecycle
+
+```text
+Incident Reported
+       │
+       ▼
+AI / Rule Analysis
+       │
+       ▼
+Severity Detection
+       │
+       ▼
+Incident Created
+       │
+       ▼
+Admin Notification
+       │
+       ▼
+Response Assigned
+       │
+       ▼
+Investigation
+       │
+       ▼
+Incident Resolved
+```
+
+### Incident Status
+
+```text
+REPORTED
+   ↓
+UNDER_REVIEW
+   ↓
+ASSIGNED
+   ↓
+IN_PROGRESS
+   ↓
+RESOLVED
+```
+
+---
+
+## 📊 Dashboard
+
+The administrator dashboard can display:
+
+| Information        | Purpose                    |
+| ------------------ | -------------------------- |
+| Active Tourists    | Monitor tourists           |
+| Active Incidents   | Track ongoing incidents    |
+| Emergency Alerts   | Identify critical cases    |
+| High-Risk Zones    | Monitor dangerous areas    |
+| Geofence Alerts    | Detect boundary violations |
+| Resolved Incidents | Track response performance |
+| Safety Statistics  | Analyze trends             |
+
+---
+
+## ⚙️ Installation
+
+### Prerequisites
+
+Install the following:
+
+* Java 17+
+* Node.js
+* npm
+* MySQL
+* Maven
+* Git
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Nathin78/Smart-Tourist-Safety-Monitoring-Incident-Response-System.git
+```
+
+### 2. Navigate to the Project
+
+```bash
+cd Smart-Tourist-Safety-Monitoring-Incident-Response-System
+```
+
+### 3. Configure Database
+
+Create a MySQL database:
+
+```sql
+CREATE DATABASE tourist_safety;
+```
+
+Configure your database credentials in the backend configuration.
+
+### 4. Start Backend
+
+```bash
+mvn spring-boot:run
+```
+
+### 5. Start Frontend
+
+```bash
+npm install
+npm run dev
+```
+
+---
+
+## 🎯 Project Objectives
+
+The primary objectives of this project are:
+
+1. Improve tourist safety.
+2. Enable real-time location monitoring.
+3. Detect unsafe geographic areas.
+4. Provide fast emergency reporting.
+5. Automate incident classification.
+6. Improve emergency response.
+7. Identify high-risk tourist locations.
+8. Provide centralized safety monitoring.
+9. Reduce response time during emergencies.
+10. Create a smarter and safer tourism ecosystem.
+
+---
+
+## 🌍 Real-World Applications
+
+The system can be used in:
+
+* 🏖️ Tourist destinations
+* 🏔️ Hill stations
+* 🏛️ Historical places
+* 🏞️ National parks
+* 🏝️ Beaches
+* 🎡 Tourist attractions
+* 🏙️ Smart cities
+* 🛕 Religious destinations
+* 🎪 Large public events
+
+---
+
+## 🔮 Future Enhancements
+
+* [ ] AI-powered risk prediction
+* [ ] Face recognition for missing tourists
+* [ ] Voice-based SOS
+* [ ] Mobile application
+* [ ] Real-time emergency response tracking
+* [ ] Police/emergency department integration
+* [ ] Smart CCTV integration
+* [ ] AI-based suspicious activity detection
+* [ ] Multi-language support
+* [ ] Offline emergency mode
+* [ ] Tourist safety score
+* [ ] Predictive high-risk zone detection
+* [ ] Blockchain-based identity verification
+* [ ] Emergency contact notifications
+* [ ] Advanced safety analytics
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome!
+
+1. Fork the repository.
+2. Create a new branch.
+
+```bash
+git checkout -b feature/new-feature
+```
+
+3. Make your changes.
+4. Commit your changes.
+
+```bash
+git commit -m "Add new feature"
+```
+
+5. Push your branch.
+
+```bash
+git push origin feature/new-feature
+```
+
+6. Create a Pull Request.
+
+---
+
+## 📜 License
+
+This project is developed for **educational, research, and portfolio purposes**.
+
+---
+
+## 👨‍💻 Developer
+
+**Nathin**
+
+GitHub: [Nathin78](https://github.com/Nathin78)
+
+LinkedIn: [Nathin A N](https://www.linkedin.com/in/nathin-a-n-51b2852a5/)
+
+---
+
+⭐ **If you find this project useful, please consider giving the repository a star!**
+
+### 🛡️ Smart Tourist Safety Monitoring & Incident Response System
+
+**Monitor • Detect • Alert • Respond • Protect 🌍🚨**
