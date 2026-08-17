@@ -85,20 +85,6 @@ AI can assist in analyzing reported incidents and identifying:
 * Potential risk
 * Recommended response
 
-Example:
-
-```text
-Incident
-   │
-   ▼
-AI Analysis
-   │
-   ├── Category
-   ├── Severity
-   ├── Priority
-   └── Recommended Action
-```
-
 ### 🔔 Emergency Alerts
 
 The system can generate alerts when critical situations are detected.
