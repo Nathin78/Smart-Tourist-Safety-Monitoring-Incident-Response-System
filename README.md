@@ -248,36 +248,6 @@ The project is designed around modern full-stack technologies.
 
 ---
 
-## 📂 Project Structure
-
-```text
-Smart-Tourist-Safety-Monitoring-Incident-Response-System/
-│
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── pages/
-│   │   ├── services/
-│   │   └── assets/
-│   │
-│   └── package.json
-│
-├── backend/
-│   ├── src/
-│   │   ├── controller/
-│   │   ├── service/
-│   │   ├── repository/
-│   │   ├── model/
-│   │   └── security/
-│   │
-│   └── pom.xml
-│
-├── README.md
-└── ...
-```
-
----
-
 ## 🔐 Authentication
 
 The system can use JWT-based authentication to protect user and administrative resources.
