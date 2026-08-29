@@ -203,8 +203,6 @@ The system can provide insights such as:
       └───────┘ └───────┘ └─────────┘
 ```
 
----
-
 ## 🛠️ Technology Stack
 
 The project is designed around modern full-stack technologies.
